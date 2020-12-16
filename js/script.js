@@ -244,7 +244,7 @@ const creditCardValidator = () => {
     //Credit Card field should only accept a number between 13 and 16 digits.
     if (creditCardNumberValue.length < 13 || creditCardNumberValue.length > 16) {
         creditCardNumber.style.border = "thick solid red"
-        ccValidationMsg.innerHTML = "Card Number is Invaild";
+        ccValidationMsg.innerHTML = "Please enter a number that is between 13 and 16 digits long.";
         ccValidationMsg.style.color = "red";
         ccValidationMsg.style.fontWeight = "bold";
         return false;
@@ -294,6 +294,8 @@ cvv.addEventListener('blur', cvvValidator);
 
 //Prevents Submition if validations are not true
 form.addEventListener('submit', (e) => {
+    const selectedPayment = document.getElementById('payment').value;
+
     if (!nameValidator()) {
         e.preventDefault();
     }
@@ -303,13 +305,15 @@ form.addEventListener('submit', (e) => {
     if (!activitiesValidator()) {
         e.preventDefault();
     }
-    if (!creditCardValidator()) {
-        e.preventDefault();
-    }
-    if (!zipCodeValidator()) {
-        e.preventDefault();
-    }
-    if (!cvvValidator()) {
-        e.preventDefault();
+    if (selectedPayment === "credit card"){
+        if (!creditCardValidator()) {
+            e.preventDefault();
+        }
+        if (!zipCodeValidator()) {
+            e.preventDefault();
+        }
+        if (!cvvValidator()) {
+            e.preventDefault();
+        }
     }
 });
