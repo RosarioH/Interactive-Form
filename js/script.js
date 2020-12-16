@@ -294,7 +294,7 @@ cvv.addEventListener('blur', cvvValidator);
 
 //Prevents Submition if validations are not true
 form.addEventListener('submit', (e) => {
-    const selectedPayment = document.getElementById('payment').value;
+    const submitedSelectedPayment = document.getElementById('payment').value;
 
     if (!nameValidator()) {
         e.preventDefault();
@@ -305,7 +305,7 @@ form.addEventListener('submit', (e) => {
     if (!activitiesValidator()) {
         e.preventDefault();
     }
-    if (selectedPayment === "credit card"){
+    if (submitedSelectedPayment === "credit card"){
         if (!creditCardValidator()) {
             e.preventDefault();
         }
